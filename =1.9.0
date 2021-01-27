@@ -1,0 +1,24 @@
+Requirement already satisfied: tensorflow in /home/khawar/anaconda3/envs/deepface/lib/python3.6/site-packages (1.9.0)
+Requirement already satisfied: astor>=0.6.0 in /home/khawar/.local/lib/python3.6/site-packages (from tensorflow) (0.8.1)
+Requirement already satisfied: tensorboard<1.10.0,>=1.9.0 in /home/khawar/anaconda3/envs/deepface/lib/python3.6/site-packages (from tensorflow) (1.9.0)
+Requirement already satisfied: gast>=0.2.0 in /home/khawar/.local/lib/python3.6/site-packages (from tensorflow) (0.3.3)
+Requirement already satisfied: grpcio>=1.8.6 in /home/khawar/.local/lib/python3.6/site-packages (from tensorflow) (1.32.0)
+Requirement already satisfied: absl-py>=0.1.6 in /home/khawar/.local/lib/python3.6/site-packages (from tensorflow) (0.11.0)
+Requirement already satisfied: termcolor>=1.1.0 in /home/khawar/.local/lib/python3.6/site-packages (from tensorflow) (1.1.0)
+Requirement already satisfied: protobuf>=3.4.0 in /home/khawar/.local/lib/python3.6/site-packages (from tensorflow) (3.14.0)
+Requirement already satisfied: wheel>=0.26 in /home/khawar/.local/lib/python3.6/site-packages (from tensorflow) (0.36.2)
+Requirement already satisfied: numpy>=1.13.3 in /home/khawar/.local/lib/python3.6/site-packages (from tensorflow) (1.19.4)
+Requirement already satisfied: six>=1.10.0 in /home/khawar/.local/lib/python3.6/site-packages (from tensorflow) (1.15.0)
+Requirement already satisfied: markdown>=2.6.8 in /home/khawar/.local/lib/python3.6/site-packages (from tensorboard<1.10.0,>=1.9.0->tensorflow) (3.3.3)
+Requirement already satisfied: werkzeug>=0.11.10 in /home/khawar/.local/lib/python3.6/site-packages (from tensorboard<1.10.0,>=1.9.0->tensorflow) (1.0.1)
+Requirement already satisfied: importlib-metadata in /home/khawar/.local/lib/python3.6/site-packages (from markdown>=2.6.8->tensorboard<1.10.0,>=1.9.0->tensorflow) (3.3.0)
+Requirement already satisfied: typing-extensions>=3.6.4 in /home/khawar/.local/lib/python3.6/site-packages (from importlib-metadata->markdown>=2.6.8->tensorboard<1.10.0,>=1.9.0->tensorflow) (3.7.4.3)
+Requirement already satisfied: zipp>=0.5 in /home/khawar/.local/lib/python3.6/site-packages (from importlib-metadata->markdown>=2.6.8->tensorboard<1.10.0,>=1.9.0->tensorflow) (3.4.0)
+Collecting setuptools<=39.1.0
+  Using cached setuptools-39.1.0-py2.py3-none-any.whl (566 kB)
+Installing collected packages: setuptools
+  Attempting uninstall: setuptools
+    Found existing installation: setuptools 50.0.0
+    Uninstalling setuptools-50.0.0:
+      Successfully uninstalled setuptools-50.0.0
+Successfully installed setuptools-51.0.0.post20201207
