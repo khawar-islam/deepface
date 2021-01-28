@@ -9,8 +9,9 @@ import matplotlib.pyplot as plt
 import json
 import multiprocessing
 import os
-import gc
-gc.collect()
+from tqdm import tqdm
+from pathlib import Path
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import tensorflow as tf
 
@@ -25,57 +26,28 @@ import logging
 mpl_logger = logging.getLogger('matplotlib')
 mpl_logger.setLevel(logging.WARNING)
 
-with open('/home/khawar/deepface/tests/morph.json') as f:
-    data = json.load(f)
-
-idendities = data
+with open(Path(__file__).parent/"morph.json", "r") as f:
+    identities = json.load(f)
 
 # Positives
 
-positives = []
+positives = pd.DataFrame()
 
-for key, values in idendities.items():
-    print(key)
-    for i in range(0, len(values) - 1):
-        for j in range(i + 1, len(values)):
-            print(values[i], " and ", values[j])
-            positive = [values[i], values[j]]
-            positives.append(positive)
+for value in tqdm(identities.values(),desc="Positives"):
+    positives = positives.append(pd.DataFrame(itertools.combinations(value, 2), columns=["file_x", "file_y"]), ignore_index=True)
 
-positives = pd.DataFrame(positives, columns=["file_x", "file_y"])
 positives["decision"] = "Yes"
 print(positives)
 # --------------------------
 # Negatives
 
-samples_list = list(idendities.values())
+samples_list = list(identities.values())
 
 negatives = pd.DataFrame()
 
-print(samples_list)
-negatives = []
-
-# 13673
-print(samples_list[0])
-print(len(idendities))
-print(len(samples_list))
-
-# wait a moment
-# wait a moment
-# wait me a moment OK "In this cross_product loop, if you run has been comptelely hanged after 1 minute"
-samples_list = list(idendities.values())
-
-negatives = []
-
-for i in range(0, len(idendities) - 1):
-    for j in range(i + 1, len(idendities)):
-        cross_product = itertools.product(samples_list[i], samples_list[j])
-        cross_product = list(cross_product)
-        for cross_sample in cross_product:
-            negative = [cross_sample[0], cross_sample[1]]
-            negatives.append(negative)
-
-negatives = pd.DataFrame(negatives, columns=["file_x", "file_y"])
+for combo in tqdm(itertools.combinations(identities.values(),2), desc="Negatives"):
+    for cross_sample in itertools.product(combo[0], combo[1]):
+        negatives = negatives.append(pd.Series({"file_x":cross_sample[0],"file_y":cross_sample[1]}).T, ignore_index=True)
 negatives["decision"] = "No"
 
 negatives = negatives.sample(positives.shape[0])
